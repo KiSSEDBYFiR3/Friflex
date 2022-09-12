@@ -21,5 +21,7 @@ Dart: 2.17.6
 
 ## Видео работы приложения
 
-https://user-images.githubusercontent.com/72256017/189727549-dd1bda18-387a-45cb-a044-30b3fe09ec22.mp4
+https://user-images.githubusercontent.com/72256017/189743672-d1ba3ca1-4453-43ff-932f-d00636bb64f3.mp4
+
+
 
