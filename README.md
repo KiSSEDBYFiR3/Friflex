@@ -1,16 +1,25 @@
-# friflex_test_task
+# Приложение погоды
 
-A new Flutter project.
+### Версии
 
-## Getting Started
+Flutter: 3.0.5
 
-This project is a starting point for a Flutter application.
+Dart: 2.17.6
 
-A few resources to get you started if this is your first Flutter project:
+Эмулятор: Pixel 5 API 30. Android 11
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## О приложении
+### Реализовано
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Работа с предолженным API
+* Обработка ошибок
+* Отображение текущей погоды
+* Подробный прогноз погоды на три дня в выбранном городе
+* В качестве стейт-менеджера был использован Cubit
+* DI Container
+* Анимированный бэкграунд для всех трех страниц
+
+## Видео работы приложения
+
+https://user-images.githubusercontent.com/72256017/189727549-dd1bda18-387a-45cb-a044-30b3fe09ec22.mp4
+
