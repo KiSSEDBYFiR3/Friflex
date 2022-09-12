@@ -16,12 +16,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // ключ формы для прохлждения валидации поля ввода
+  // Ключ формы для прохлждения валидации поля ввода
   final _formKey = GlobalKey<FormFieldState>();
-  // "ленивая" инициализация контроллера
+  // "Ленивая" инициализация контроллера
   late final TextEditingController _cityNameController =
       TextEditingController();
-  // счетчик для анимированного контейнера
+  // Счетчик для анимированного контейнера
   ValueNotifier<int> counter = ValueNotifier<int>(0);
 
   _startBgColorAnimationTimer() {
@@ -62,11 +62,11 @@ class _HomePageState extends State<HomePage> {
               style: const TextStyle(color: Color.fromARGB(234, 255, 255, 255)),
               key: _formKey,
               validator: (value) {
-                // валидация поля ввода
-                // если поле ввода пустое, выводим ошибку
+                // Валидация поля ввода
+                // Если поле ввода пустое, выводим ошибку
                 if (value == null || value.isEmpty) {
                   return "Поле не должно быть пустым";
-                  // если значение поля ввода короче двух символов, так же выводим ошибку
+                  // Если значение поля ввода короче двух символов, так же выводим ошибку
                 } else if (value.length < 2) {
                   return "Слишком короткое название";
                 }
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                         minimumSize: const Size.fromHeight(50),
                       ),
                       onPressed: () {
-                        // если поле прошло валидацию, переходим на следующую страницу и делаем запрос данных через Cubit
+                        // Если поле прошло валидацию, переходим на следующую страницу и делаем запрос данных через Cubit
                         if (_formKey.currentState!.validate()) {
                           Navigator.pushNamed(context, '/second');
                           widget.weatherCubit

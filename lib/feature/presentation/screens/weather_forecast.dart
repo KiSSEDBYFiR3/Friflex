@@ -1,8 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friflex_test_task/core/constants/assets_list.dart';
+import 'package:friflex_test_task/feature/data/model/weather_model.dart';
 import 'package:friflex_test_task/feature/presentation/bloc/weather_cubit/weather_cubit.dart';
 import 'package:friflex_test_task/feature/presentation/bloc/weather_cubit/weather_states.dart';
 import 'package:friflex_test_task/feature/presentation/widgets/animated_background.dart';
@@ -18,8 +18,9 @@ class WeatherForecast extends StatefulWidget {
 }
 
 class _WeatherForecastState extends State<WeatherForecast> with ChangeNotifier {
+  // Контроллер для PageView.builder
   late final _controller = PageController();
-  // счетчик для анимированного контейнера
+  // Счетчик для анимированного контейнера
   ValueNotifier<int> counter = ValueNotifier<int>(0);
 
   _startBgColorAnimationTimer() {
@@ -49,6 +50,17 @@ class _WeatherForecastState extends State<WeatherForecast> with ChangeNotifier {
     super.dispose();
   }
 
+// Функция для сортировки по температуре
+  WeatherModel _sortTemp(WeatherModel weatherModel) {
+    if (weatherModel.list != null) {
+      weatherModel.list!
+          .sort((a, b) => a.main!.tempMin!.compareTo(b.main!.tempMin!));
+      return weatherModel;
+    } else {
+      return weatherModel;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,10 +77,12 @@ class _WeatherForecastState extends State<WeatherForecast> with ChangeNotifier {
         ),
       ),
       body: BlocBuilder<WeatherCubit, WeatherStates>(
-        // так же как и на втором экране передаю экземпляр того же самого кубита, который хранит тоже состояние
+        // Так же как и на втором экране передаю экземпляр того же самого кубита, который хранит тоже состояние
         bloc: widget.weatherCubit,
         builder: (context, state) {
           if (state is WeatherLoadedState) {
+            // Сортирую список по температуре
+            final weather = _sortTemp(state.weatherModel);
             return Stack(children: [
               animatedBackground(context, counter.value),
               PageView.builder(
@@ -78,16 +92,15 @@ class _WeatherForecastState extends State<WeatherForecast> with ChangeNotifier {
                       child: detailsPage(
                           context: context,
                           cityName: state.cityName,
-                          dateTime: state.weatherModel.list?[index].dtTxt ?? '',
-                          // округляю значения до одной цифры после запятой
-                          minTemp: state.weatherModel.list?[index].main?.tempMin
+                          dateTime: weather.list?[index].dtTxt ?? '',
+                          // Округляю значения до одной цифры после запятой
+                          minTemp: weather.list?[index].main?.tempMin
                                   ?.toStringAsFixed(1) ??
                               '',
-                          windSpeed: state.weatherModel.list?[index].wind?.speed
+                          windSpeed: weather.list?[index].wind?.speed
                                   ?.toStringAsFixed(1) ??
                               '',
-                          humidity: state
-                                  .weatherModel.list?[index].main?.humidity
+                          humidity: weather.list?[index].main?.humidity
                                   ?.toStringAsFixed(1) ??
                               ''),
                     );

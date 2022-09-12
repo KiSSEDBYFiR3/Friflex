@@ -26,8 +26,8 @@ Widget animatedBackground(BuildContext context, int counter) {
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          // в экранах со стейтфул виджетами алайнменты меняются в зависимости от значения счетчика
-          // в стейтлесс виджете можно выбрать просто любое значение счетчика по умолчанию
+          // В экранах со стейтфул виджетами алайнменты меняются в зависимости от значения счетчика
+          // В стейтлесс виджете можно выбрать просто любое значение счетчика по умолчанию
           begin: alignments[counter % alignments.length],
           end: alignments[(counter + 2) % alignments.length],
           colors: colorsList,

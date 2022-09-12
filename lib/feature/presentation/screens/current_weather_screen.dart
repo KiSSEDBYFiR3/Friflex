@@ -50,16 +50,16 @@ class CurrentWeatherScreen extends StatelessWidget {
       body: Stack(children: [
         animatedBackground(context, _counter),
         BlocConsumer<WeatherCubit, WeatherStates>(
-            // передаю экземпляр конкретного кубита, чтобы избежать ошибок
+            // Передаю экземпляр конкретного кубита, чтобы избежать ошибок
             bloc: weatherCubit,
             builder: (context, state) {
               if (state is WeatherLoadingState) {
                 return const Center(
-                  // индикатор загрузки
+                  // Индикатор загрузки
                   child: CircularProgressIndicator(),
                 );
               } else if (state is WeatherErrorState) {
-                // в случае ошибки отображаю текст в центре
+                // В случае ошибки отображаю текст в центре
                 return const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Center(
@@ -96,7 +96,7 @@ class CurrentWeatherScreen extends StatelessWidget {
                           AssetsPath.assetsList[0],
                           state.weatherModel.list?[0].main?.tempMin
                                   ?.toStringAsFixed(1) ??
-                              ''), // не ставлю бэнг оператор, так как можно словить красный экран
+                              ''), // Не ставлю бэнг оператор, так как можно словить красный экран
                       rowTile(
                           context,
                           AssetsPath.assetsList[1],
@@ -117,7 +117,7 @@ class CurrentWeatherScreen extends StatelessWidget {
             },
             listener: ((context, state) {
               if (state is WeatherErrorState) {
-                // в случае ошибки показываю снэкбар
+                // В случае ошибки показываю снэкбар
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     duration: const Duration(seconds: 10),
                     content: Text(
